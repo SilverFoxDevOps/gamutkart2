@@ -15,16 +15,7 @@ pipeline {
 				checkout scm
 			}
 		}
-		stage('Build') {
-	    	steps {
-				sh 'mvn install -DskipTests'
-			}
-	    }
-		stage('Unit Tests') {
-			steps {
-				sh 'mvn surefire:test'
-			}
-		}
+		
 		stage('Deployment') {
 	    	steps {
 				sh 'sshpass -p "gamut" scp target/gamutkart.war gamut@172.17.0.2:/home/gamut/Distros/apache-tomcat-8.5.42/webapps'
