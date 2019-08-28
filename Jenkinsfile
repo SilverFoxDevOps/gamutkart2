@@ -9,13 +9,13 @@ pipeline {
 	}
 	stage('Build') {
 	    steps {
-		sh '/home/gamut/Distros/apache-maven-3.6.1/bin/mvn install'
+		sh '/home/ubuntu/apache-maven-3.6.1//bin/mvn install'
 	}
 	    }
 	stage('Deployment') {
 	    steps {
 		sh 'sshpass -p "boni" scp target/gamutkart.war gamut@172.17.0.2:/home/gamut/Distros/apache-tomcat-8.5.42/webapps'
-		sh 'sshpass -p "boni" ssh gamut@172.17.0.2 "JAVA_HOME=/home/gamut/Distros/jdk1.8.0_211" "/home/gamut/Distros/apache-tomcat-8.5.42/bin/startup.sh"'
+		sh 'sshpass -p "boni" ssh gamut@172.17.0.2 "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" "TOMECAT_HOME=/home/ubuntu/apache-tomcat-8.5.45//bin/startup.sh"'
 	    }
 	}
 
